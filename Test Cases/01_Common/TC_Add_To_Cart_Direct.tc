@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>TC_Add_To_Cart_Direct</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>fecfc456-0969-4e23-a3d9-bf3e0ba94cb7</testCaseGuid>
+</TestCaseEntity>
