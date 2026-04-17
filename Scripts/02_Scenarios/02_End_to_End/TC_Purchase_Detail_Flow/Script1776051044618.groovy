@@ -17,12 +17,12 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.callTestCase(findTestCase('01_Common/TC_Login'), [('var_action_username') : 'standard_user', ('var_action_password') : 'secret_sauce'], 
+WebUI.callTestCase(findTestCase('Common/TC_Login'), [('var_action_username') : 'standard_user', ('var_action_password') : 'secret_sauce'], 
     FailureHandling.STOP_ON_FAILURE)
 
 WebUI.verifyElementNotPresent(findTestObject('Component_Navbar/text_cart_badge'), 0)
 
-WebUI.callTestCase(findTestCase('01_Common/TC_Add_To_Cart_Via_Detail'), [('target') : 'Sauce Labs Backpack'], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('Common/TC_Add_To_Cart_Via_Detail'), [('target') : 'Sauce Labs Backpack'], FailureHandling.STOP_ON_FAILURE)
 
 WebUI.verifyElementPresent(findTestObject('Component_Navbar/text_cart_badge'), 0)
 
@@ -42,8 +42,18 @@ def checkoutStepOnePage = WebUI.getUrl()
 
 WebUI.verifyMatch(checkoutStepOnePage, 'https://www.saucedemo.com/checkout-step-one.html', false)
 
-WebUI.callTestCase(findTestCase('01_Common/TC_Fill_Checkout_Form'), [('firstname') : 'Fadida', ('lastname') : 'Junaedy', ('postal_code') : '24032002'], 
+WebUI.callTestCase(findTestCase('Common/TC_Fill_Checkout_Form'), [('firstname') : 'Fadida', ('lastname') : 'Junaedy', ('postal_code') : '24032002'], 
     FailureHandling.STOP_ON_FAILURE)
 
-WebUI.callTestCase(findTestCase('01_Common/TC_Price_Total_Validation'), [:], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('Common/TC_Price_Total_Validation'), [:], FailureHandling.STOP_ON_FAILURE)
+
+WebUI.click(findTestObject('Page_Checkout_Step_Two/button_finish'))
+
+String checkoutCompleteUrl = WebUI.getUrl()
+
+WebUI.verifyMatch(checkoutCompleteUrl, 'https://www.saucedemo.com/checkout-complete.html', false)
+
+WebUI.verifyElementPresent(findTestObject('Page_Checkout_Complete/text_complete_header'), 0)
+
+WebUI.verifyElementText(findTestObject('Page_Checkout_Complete/text_complete_header'), 'Thank you for your order!')
 

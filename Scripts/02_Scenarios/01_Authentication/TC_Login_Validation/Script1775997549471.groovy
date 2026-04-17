@@ -17,7 +17,7 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.callTestCase(findTestCase('01_Common/TC_Login'), [('var_action_username') : var_username, ('var_action_password') : var_password], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('Common/TC_Login'), [('var_action_username') : var_username, ('var_action_password') : var_password], FailureHandling.STOP_ON_FAILURE)
 
 if (var_expected_status == 'success') {
     WebUI.waitForElementPresent(findTestObject('Page_Inventory/text_title'), 0)
