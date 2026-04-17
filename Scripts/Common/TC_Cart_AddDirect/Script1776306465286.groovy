@@ -17,26 +17,30 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.callTestCase(findTestCase('Common/TC_Auth_Login'), [('var_username') : 'standard_user', ('var_password') : 'secret_sauce'
-        , ('var_expected_status') : 'success', ('var_expected_message') : ''], FailureHandling.STOP_ON_FAILURE)
-
 def textCartBadge = findTestObject('Component_Navbar/text_cart_badge')
+
 def buttonAddToCart = findTestObject('Page_Inventory/button_add_to_cart', [('productName') : 'Sauce Labs Backpack'])
 
 int countQuantityBefore = 0
+
 if (WebUI.verifyElementPresent(textCartBadge, 5, FailureHandling.OPTIONAL)) {
-	String textBefore = WebUI.getText(textCartBadge)
-	countQuantityBefore = Integer.parseInt(textBefore)
+    String textBefore = WebUI.getText(textCartBadge)
+
+    countQuantityBefore = Integer.parseInt(textBefore)
 }
 
 WebUI.waitForElementClickable(buttonAddToCart, 5)
+
 WebUI.click(buttonAddToCart)
 
 WebUI.verifyElementPresent(textCartBadge, 5)
+
 String rawCountQuantityAfter = WebUI.getText(textCartBadge)
+
 int countQuantityAfter = Integer.parseInt(rawCountQuantityAfter)
 
 WebUI.verifyEqual(countQuantityAfter, countQuantityBefore + 1)
 
-WebUI.verifyElementText(findTestObject('Page_Inventory/button_remove_from_cart', [('productName') : 'Sauce Labs Backpack']), 'Remove')
+WebUI.verifyElementText(findTestObject('Page_Inventory/button_remove_from_cart', [('productName') : 'Sauce Labs Backpack']), 
+    'Remove')
 
