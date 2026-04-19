@@ -17,23 +17,45 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
+def linkProduct = findTestObject('Page_Inventory/link_product', [('productName') : target])
+
 def textCartBadge = findTestObject('Component_Navbar/text_cart_badge')
-def buttonAddToCart = findTestObject('Page_Inventory/button_add_to_cart', [('productName') : 'Sauce Labs Backpack'])
+
+def buttonAddToCart = findTestObject('Page_Inventory_Item/button_add_to_cart')
+
+def buttonRemoveFromCart = findTestObject('Page_Inventory_Item/button_remove_from_cart')
+
+def buttonBackToProducts = findTestObject('Page_Inventory_Item/button_back_to_products')
 
 int countQuantityBefore = 0
-if (WebUI.verifyElementPresent(textCartBadge, 5, FailureHandling.OPTIONAL)) {
-    String textBefore = WebUI.getText(textCartBadge)
-    countQuantityBefore = Integer.parseInt(textBefore)
+
+if (WebUI.verifyElementPresent(textCartBadge, 3, FailureHandling.OPTIONAL)) {
+    countQuantityBefore = Integer.parseInt(WebUI.getText(textCartBadge))
 }
 
+WebUI.waitForElementClickable(linkProduct, 5)
+
+WebUI.click(linkProduct)
+
+WebUI.waitForElementPresent(buttonBackToProducts, 5)
+
+String currentUrl = WebUI.getUrl()
+
+WebUI.verifyMatch(currentUrl, '.*/inventory-item\\.html\\?id=.*', true, FailureHandling.STOP_ON_FAILURE)
+
 WebUI.waitForElementClickable(buttonAddToCart, 5)
+
 WebUI.click(buttonAddToCart)
 
 WebUI.verifyElementPresent(textCartBadge, 5)
 
-String rawCountQuantityAfter = WebUI.getText(textCartBadge)
-int countQuantityAfter = Integer.parseInt(rawCountQuantityAfter)
+int countQuantityAfter = Integer.parseInt(WebUI.getText(textCartBadge))
+
 WebUI.verifyEqual(countQuantityAfter, countQuantityBefore + 1)
-WebUI.verifyElementText(findTestObject('Page_Inventory/button_remove_from_cart', [('productName') : 'Sauce Labs Backpack']), 
-    'Remove')
+
+WebUI.verifyElementPresent(buttonRemoveFromCart, 3)
+
+WebUI.verifyElementText(buttonRemoveFromCart, 'Remove')
+
+println("Success: Berhasil menambahkan $target dari halaman detail.")
 

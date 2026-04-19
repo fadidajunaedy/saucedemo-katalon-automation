@@ -18,15 +18,11 @@ import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
 String rawSubtotal = WebUI.getText(findTestObject('Page_Checkout_Step_Two/label_subtotal'))
-
 String rawTax = WebUI.getText(findTestObject('Page_Checkout_Step_Two/label_tax'))
-
 String rawTotal = WebUI.getText(findTestObject('Page_Checkout_Step_Two/label_total'))
 
-double valueSubtotal = CustomKeywords.'my.utils.PriceFormatter.extractNumber'(rawSubtotal)
-
-double valueTax = CustomKeywords.'my.utils.PriceFormatter.extractNumber'(rawTax)
-
-double valueTotal = CustomKeywords.'my.utils.PriceFormatter.extractNumber'(rawTotal)
+double valueSubtotal = CustomKeywords.'my.utils.Formatter.extractNumber'(rawSubtotal)
+double valueTax = CustomKeywords.'my.utils.Formatter.extractNumber'(rawTax)
+double valueTotal = CustomKeywords.'my.utils.Formatter.extractNumber'(rawTotal)
 
 assert valueSubtotal + valueTax == valueTotal

@@ -20,7 +20,7 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 
 import internal.GlobalVariable
 
-public class PriceFormatter {
+public class Formatter {
 	@Keyword
 	public static double extractNumber(String rawText) {
 		if (rawText == null || rawText.trim().isEmpty()) {

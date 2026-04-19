@@ -17,23 +17,43 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
+def linkProduct = findTestObject('Page_Inventory/link_product', [('productName') : target])
+
 def textCartBadge = findTestObject('Component_Navbar/text_cart_badge')
-def buttonAddToCart = findTestObject('Page_Inventory/button_add_to_cart', [('productName') : 'Sauce Labs Backpack'])
+
+def buttonRemoveFromCart = findTestObject('Page_Inventory_Item/button_remove_from_cart')
+
+def buttonAddToCart = findTestObject('Page_Inventory_Item/button_add_to_cart')
+
+def buttonBackToProducts = findTestObject('Page_Inventory_Item/button_back_to_products')
 
 int countQuantityBefore = 0
-if (WebUI.verifyElementPresent(textCartBadge, 5, FailureHandling.OPTIONAL)) {
-    String textBefore = WebUI.getText(textCartBadge)
-    countQuantityBefore = Integer.parseInt(textBefore)
+
+if (WebUI.verifyElementPresent(textCartBadge, 3, FailureHandling.OPTIONAL)) {
+    countQuantityBefore = Integer.parseInt(WebUI.getText(textCartBadge))
 }
 
-WebUI.waitForElementClickable(buttonAddToCart, 5)
-WebUI.click(buttonAddToCart)
+WebUI.waitForElementClickable(linkProduct, 5)
 
-WebUI.verifyElementPresent(textCartBadge, 5)
+WebUI.click(linkProduct)
 
-String rawCountQuantityAfter = WebUI.getText(textCartBadge)
-int countQuantityAfter = Integer.parseInt(rawCountQuantityAfter)
-WebUI.verifyEqual(countQuantityAfter, countQuantityBefore + 1)
-WebUI.verifyElementText(findTestObject('Page_Inventory/button_remove_from_cart', [('productName') : 'Sauce Labs Backpack']), 
-    'Remove')
+WebUI.waitForElementPresent(buttonBackToProducts, 5)
+
+WebUI.verifyElementPresent(buttonRemoveFromCart, 5)
+
+WebUI.click(buttonRemoveFromCart)
+
+if (WebUI.verifyElementPresent(textCartBadge, 3, FailureHandling.OPTIONAL)) {
+    int countQuantityAfter = Integer.parseInt(WebUI.getText(textCartBadge))
+
+    WebUI.verifyEqual(countQuantityAfter, countQuantityBefore - 1)
+} else {
+    WebUI.verifyEqual(countQuantityBefore, 1)
+
+    println('Badge hilang karena keranjang kosong.')
+}
+
+WebUI.verifyElementPresent(buttonAddToCart, 5)
+
+WebUI.verifyElementText(buttonAddToCart, 'Add to cart')
 
