@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestCaseEntity>
    <description></description>
-   <name>TC_Add_To_Cart_Direct</name>
+   <name>TC_Cart_AddViaDetail</name>
    <tag></tag>
    <comment></comment>
    <recordOption>OTHER</recordOption>
-   <testCaseGuid>fecfc456-0969-4e23-a3d9-bf3e0ba94cb7</testCaseGuid>
+   <testCaseGuid>32baa59f-fe0d-45a2-9f00-0573d70b42be</testCaseGuid>
    <variableLinks>
       <testDataLinkId></testDataLinkId>
       <type>DEFAULT</type>
       <value></value>
-      <variableId>2f3b8f43-63ea-4c97-be2f-92dab857afbc</variableId>
+      <variableId>998620f1-57b7-4735-b113-59ccba6fb103</variableId>
    </variableLinks>
    <variable>
       <defaultValue>'Sauce Labs Backpack'</defaultValue>
       <description></description>
-      <id>2f3b8f43-63ea-4c97-be2f-92dab857afbc</id>
+      <id>998620f1-57b7-4735-b113-59ccba6fb103</id>
       <masked>false</masked>
       <name>target</name>
    </variable>

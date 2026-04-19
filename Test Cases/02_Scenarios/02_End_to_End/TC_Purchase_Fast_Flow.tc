@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TestCaseEntity>
-   <description></description>
-   <name>TC_Purchase_Fast_Flow</name>
-   <tag></tag>
-   <comment></comment>
-   <recordOption>OTHER</recordOption>
-   <testCaseGuid>08e8756f-6b7f-4cb9-a9f8-de3e26a713c8</testCaseGuid>
-</TestCaseEntity>
