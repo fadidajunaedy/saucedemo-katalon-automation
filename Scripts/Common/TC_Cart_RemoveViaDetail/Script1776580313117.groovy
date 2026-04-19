@@ -49,8 +49,6 @@ if (WebUI.verifyElementPresent(textCartBadge, 3, FailureHandling.OPTIONAL)) {
     WebUI.verifyEqual(countQuantityAfter, countQuantityBefore - 1)
 } else {
     WebUI.verifyEqual(countQuantityBefore, 1)
-
-    println('Badge hilang karena keranjang kosong.')
 }
 
 WebUI.verifyElementPresent(buttonAddToCart, 5)
