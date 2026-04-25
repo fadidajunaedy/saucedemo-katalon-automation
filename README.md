@@ -1,10 +1,10 @@
-# 🛒 Swag Labs — End-to-End Test Automation
+# SauceDemo Katalon Automation
 
 > Automation portfolio project using **Katalon Studio** with **Page Object Model (POM)** architecture, targeting the [Sauce Demo](https://www.saucedemo.com) web application.
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 This project demonstrates a structured, maintainable test automation suite for an e-commerce web application. It covers authentication flows, inventory management, cart behavior, checkout processes, and full end-to-end user journeys — all built with real-world QA practices in mind.
 
@@ -18,10 +18,10 @@ This project demonstrates a structured, maintainable test automation suite for a
 
 ---
 
-## 🗂️ Project Structure
+## Project Structure
 
 ```
-📦 Project Root
+Project Root
 ├── 📁 Test Cases
 │   ├── 📁 Common/              # Reusable modular test cases
 │   └── 📁 E2E/                 # Full end-to-end user journey scenarios
@@ -50,7 +50,7 @@ This project demonstrates a structured, maintainable test automation suite for a
 
 ---
 
-## 🧪 Test Cases
+## Test Cases
 
 ### Common (Reusable Building Blocks)
 
@@ -77,7 +77,7 @@ This project demonstrates a structured, maintainable test automation suite for a
 
 ---
 
-## 🔁 End-to-End Scenarios
+## End-to-End Scenarios
 
 ### E2E_01 — The Standard Shopper _(Happy Path)_
 
@@ -115,9 +115,9 @@ Login → Add Items → Remove Some Items → Reset App State → Verify Cart is
 
 ---
 
-## 🔬 Test Suites
+## Test Suites
 
-### 🔵 Regression
+### Regression
 
 #### `TS_Reg_Authentication`
 
@@ -143,7 +143,7 @@ Validates all sorting options on the inventory page.
 
 ---
 
-### 🟢 Smoke
+### Smoke
 
 #### `TS_Smoke_CriticalFlow`
 
@@ -151,7 +151,7 @@ A fast, lightweight suite that verifies the core application flow is functional 
 
 ---
 
-## 🧱 Architecture
+## Architecture
 
 This project follows the **Page Object Model (POM)** pattern:
 
@@ -162,7 +162,7 @@ This project follows the **Page Object Model (POM)** pattern:
 
 ---
 
-## 🚀 How to Run
+## How to Run
 
 1. Open the project in **Katalon Studio**
 2. Select a Test Suite from the `Test Suites` folder
@@ -171,7 +171,8 @@ This project follows the **Page Object Model (POM)** pattern:
 
 ---
 
-## 👤 Author
+## Author
 
+**Fadida Zanetti Junaedy**  
 Built as part of a QA automation portfolio.
 Application under test: [Swag Labs by Sauce Labs](https://www.saucedemo.com)
