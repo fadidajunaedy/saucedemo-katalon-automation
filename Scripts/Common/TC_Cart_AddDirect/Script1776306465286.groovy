@@ -18,7 +18,7 @@ import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
 def textCartBadge = findTestObject('Component_Navbar/text_cart_badge')
-def buttonAddToCart = findTestObject('Page_Inventory/button_add_to_cart', [('productName') : 'Sauce Labs Backpack'])
+def buttonAddToCart = findTestObject('Page_Inventory/button_add_to_cart', [('productName') : target])
 
 int countQuantityBefore = 0
 if (WebUI.verifyElementPresent(textCartBadge, 5, FailureHandling.OPTIONAL)) {
@@ -34,6 +34,6 @@ WebUI.verifyElementPresent(textCartBadge, 5)
 String rawCountQuantityAfter = WebUI.getText(textCartBadge)
 int countQuantityAfter = Integer.parseInt(rawCountQuantityAfter)
 WebUI.verifyEqual(countQuantityAfter, countQuantityBefore + 1)
-WebUI.verifyElementText(findTestObject('Page_Inventory/button_remove_from_cart', [('productName') : 'Sauce Labs Backpack']), 
+WebUI.verifyElementText(findTestObject('Page_Inventory/button_remove_from_cart', [('productName') : target]), 
     'Remove')
 

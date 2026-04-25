@@ -17,19 +17,10 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.waitForElementClickable(findTestObject('Component_Navbar/button_menu_burger'), 0)
+def textProductElements = WebUI.findWebElements(findTestObject('Page_Inventory/text_product_names'), 5)
+List<String> textProductNames = []
+for (def el: textProductElements) {
+	textProductNames.add(el.getText())
+}
 
-WebUI.click(findTestObject('Component_Navbar/button_menu_burger'))
-
-WebUI.verifyElementVisible(findTestObject('Component_Sidebar/button_cross_burger'))
-
-WebUI.waitForElementClickable(findTestObject('Component_Sidebar/link_logout'), 0)
-
-WebUI.click(findTestObject('Component_Sidebar/link_logout'))
-
-WebUI.delay(1)
-
-String currentURL = WebUI.getUrl()
-
-WebUI.verifyMatch(currentURL, 'https://www.saucedemo.com/', false)
-
+WebUI.verifyGreaterThan(textProductNames.size(), 0)

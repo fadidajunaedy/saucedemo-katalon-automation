@@ -31,21 +31,21 @@
       <variableId>d2e0aa6b-6d6d-4ec8-ba9e-83d0dc8daae6</variableId>
    </variableLinks>
    <variable>
-      <defaultValue>'standard_user'</defaultValue>
+      <defaultValue>''</defaultValue>
       <description></description>
       <id>c4b59831-d74a-4b64-9b3e-5ae23bcae619</id>
       <masked>false</masked>
       <name>var_username</name>
    </variable>
    <variable>
-      <defaultValue>'secret_sauce'</defaultValue>
+      <defaultValue>''</defaultValue>
       <description></description>
       <id>28a25a43-b7bc-4242-972f-cf21398f66a7</id>
       <masked>false</masked>
       <name>var_password</name>
    </variable>
    <variable>
-      <defaultValue>'success'</defaultValue>
+      <defaultValue>''</defaultValue>
       <description></description>
       <id>74cb35f6-d2c8-4dff-abe7-86989fbf257a</id>
       <masked>false</masked>

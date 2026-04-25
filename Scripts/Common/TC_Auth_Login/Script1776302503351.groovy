@@ -1,4 +1,4 @@
-import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
+	import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
@@ -28,7 +28,7 @@ WebUI.setText(findTestObject('Page_Login/field_password'), var_password)
 WebUI.click(findTestObject('Page_Login/button_login'))
 
 if (var_expected_status == 'success') {
-	WebUI.waitForElementPresent(findTestObject('Page_Inventory/text_title'), 0)
+	WebUI.waitForElementPresent(findTestObject('Page_Inventory/text_title'), 5)
 
 	WebUI.verifyElementText(findTestObject('Page_Inventory/text_title'), 'Products')
 

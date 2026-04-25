@@ -17,19 +17,32 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.waitForElementClickable(findTestObject('Component_Navbar/button_menu_burger'), 0)
+WebUI.waitForElementClickable(findTestObject('Page_Cart/button_checkout'), 5)
 
-WebUI.click(findTestObject('Component_Navbar/button_menu_burger'))
+WebUI.click(findTestObject('Page_Cart/button_checkout'))
 
-WebUI.verifyElementVisible(findTestObject('Component_Sidebar/button_cross_burger'))
+String checkoutStepOneURL = WebUI.getUrl()
 
-WebUI.waitForElementClickable(findTestObject('Component_Sidebar/link_logout'), 0)
+WebUI.verifyMatch(checkoutStepOneURL, 'https://www.saucedemo.com/checkout-step-one.html', false)
 
-WebUI.click(findTestObject('Component_Sidebar/link_logout'))
+WebUI.verifyElementPresent(findTestObject('Page_Checkout_Step_One/button_cancel'), 5)
 
-WebUI.delay(1)
+WebUI.callTestCase(findTestCase('Common/TC_Checkout_Information'), [:], FailureHandling.STOP_ON_FAILURE)
 
-String currentURL = WebUI.getUrl()
+String checkoutStepTwoURL = WebUI.getUrl()
 
-WebUI.verifyMatch(currentURL, 'https://www.saucedemo.com/', false)
+WebUI.verifyMatch(checkoutStepTwoURL, 'https://www.saucedemo.com/checkout-step-two.html', false)
 
+WebUI.verifyElementPresent(findTestObject('Page_Checkout_Step_Two/button_cancel'), 5)
+
+WebUI.callTestCase(findTestCase('Common/TC_Checkout_VerifyPrice'), [:], FailureHandling.STOP_ON_FAILURE)
+
+WebUI.click(findTestObject('Page_Checkout_Step_Two/button_finish'))
+
+String checkoutCompleteURL = WebUI.getUrl()
+
+WebUI.verifyMatch(checkoutCompleteURL, 'https://www.saucedemo.com/checkout-complete.html', false)
+
+WebUI.verifyElementPresent(findTestObject('Page_Checkout_Complete/text_complete_header'), 5)
+
+WebUI.verifyElementText(findTestObject('Page_Checkout_Complete/text_complete_header'), 'Thank you for your order!')

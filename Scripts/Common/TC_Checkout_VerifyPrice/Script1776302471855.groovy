@@ -17,19 +17,12 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.waitForElementClickable(findTestObject('Component_Navbar/button_menu_burger'), 0)
+String rawSubtotal = WebUI.getText(findTestObject('Page_Checkout_Step_Two/label_subtotal'))
+String rawTax = WebUI.getText(findTestObject('Page_Checkout_Step_Two/label_tax'))
+String rawTotal = WebUI.getText(findTestObject('Page_Checkout_Step_Two/label_total'))
 
-WebUI.click(findTestObject('Component_Navbar/button_menu_burger'))
+double valueSubtotal = CustomKeywords.'my.utils.Formatter.extractNumber'(rawSubtotal)
+double valueTax = CustomKeywords.'my.utils.Formatter.extractNumber'(rawTax)
+double valueTotal = CustomKeywords.'my.utils.Formatter.extractNumber'(rawTotal)
 
-WebUI.verifyElementVisible(findTestObject('Component_Sidebar/button_cross_burger'))
-
-WebUI.waitForElementClickable(findTestObject('Component_Sidebar/link_logout'), 0)
-
-WebUI.click(findTestObject('Component_Sidebar/link_logout'))
-
-WebUI.delay(1)
-
-String currentURL = WebUI.getUrl()
-
-WebUI.verifyMatch(currentURL, 'https://www.saucedemo.com/', false)
-
+WebUI.verifyEqual(valueSubtotal + valueTax, valueTotal)

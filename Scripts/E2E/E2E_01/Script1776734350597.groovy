@@ -17,19 +17,18 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.waitForElementClickable(findTestObject('Component_Navbar/button_menu_burger'), 0)
+WebUI.callTestCase(findTestCase('Common/TC_Auth_Login'), [('var_username') : 'standard_user', ('var_password') : 'secret_sauce'
+        , ('var_expected_status') : 'success', ('var_expected_message') : ''], FailureHandling.STOP_ON_FAILURE)
 
-WebUI.click(findTestObject('Component_Navbar/button_menu_burger'))
+WebUI.callTestCase(findTestCase('Common/TC_Cart_AddDirect'), [('target') : 'Sauce Labs Backpack'], FailureHandling.STOP_ON_FAILURE)
 
-WebUI.verifyElementVisible(findTestObject('Component_Sidebar/button_cross_burger'))
+WebUI.verifyElementClickable(findTestObject('Component_Navbar/button_cart'))
 
-WebUI.waitForElementClickable(findTestObject('Component_Sidebar/link_logout'), 0)
+WebUI.click(findTestObject('Component_Navbar/button_cart'))
 
-WebUI.click(findTestObject('Component_Sidebar/link_logout'))
+String cartURL = WebUI.getUrl()
 
-WebUI.delay(1)
+WebUI.verifyMatch(cartURL, 'https://www.saucedemo.com/cart.html', false)
 
-String currentURL = WebUI.getUrl()
-
-WebUI.verifyMatch(currentURL, 'https://www.saucedemo.com/', false)
+WebUI.callTestCase(findTestCase('Common/TC_Checkout'), [:], FailureHandling.STOP_ON_FAILURE)
 

@@ -17,19 +17,15 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.waitForElementClickable(findTestObject('Component_Navbar/button_menu_burger'), 0)
+WebUI.callTestCase(findTestCase('Common/TC_Auth_Login'), [('var_username') : 'standard_user', ('var_password') : 'secret_sauce'
+        , ('var_expected_status') : 'success', ('var_expected_message') : ''], FailureHandling.STOP_ON_FAILURE)
 
-WebUI.click(findTestObject('Component_Navbar/button_menu_burger'))
+WebUI.verifyElementClickable(findTestObject('Page_Inventory/link_product_via_image', [('productName') : target]))
 
-WebUI.verifyElementVisible(findTestObject('Component_Sidebar/button_cross_burger'))
+WebUI.click(findTestObject('Page_Inventory/link_product_via_image', [('productName') : target]))
 
-WebUI.waitForElementClickable(findTestObject('Component_Sidebar/link_logout'), 0)
+WebUI.waitForElementPresent(findTestObject('Page_Inventory_Item/button_back_to_products'), 5)
 
-WebUI.click(findTestObject('Component_Sidebar/link_logout'))
+String currentUrl = WebUI.getUrl()
 
-WebUI.delay(1)
-
-String currentURL = WebUI.getUrl()
-
-WebUI.verifyMatch(currentURL, 'https://www.saucedemo.com/', false)
-
+WebUI.verifyMatch(currentUrl, '.*/inventory-item\\.html\\?id=.*', true, FailureHandling.STOP_ON_FAILURE)

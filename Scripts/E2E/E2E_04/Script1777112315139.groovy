@@ -17,12 +17,20 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-String rawSubtotal = WebUI.getText(findTestObject('Page_Checkout_Step_Two/label_subtotal'))
-String rawTax = WebUI.getText(findTestObject('Page_Checkout_Step_Two/label_tax'))
-String rawTotal = WebUI.getText(findTestObject('Page_Checkout_Step_Two/label_total'))
+WebUI.callTestCase(findTestCase('Common/TC_Auth_Login'), [('var_username') : 'standard_user', ('var_password') : 'secret_sauce'
+        , ('var_expected_status') : 'success', ('var_expected_message') : ''], FailureHandling.STOP_ON_FAILURE)
 
-double valueSubtotal = CustomKeywords.'my.utils.Formatter.extractNumber'(rawSubtotal)
-double valueTax = CustomKeywords.'my.utils.Formatter.extractNumber'(rawTax)
-double valueTotal = CustomKeywords.'my.utils.Formatter.extractNumber'(rawTotal)
+WebUI.callTestCase(findTestCase('Common/TC_Cart_AddDirect'), [('target') : targetProduct1], FailureHandling.STOP_ON_FAILURE)
 
-assert valueSubtotal + valueTax == valueTotal
+WebUI.callTestCase(findTestCase('Common/TC_Cart_AddDirect'), [('target') : targetProduct2], FailureHandling.STOP_ON_FAILURE)
+
+WebUI.callTestCase(findTestCase('Common/TC_Cart_RemoveDirect'), [('target') : targetProduct1], FailureHandling.STOP_ON_FAILURE)
+
+WebUI.verifyElementPresent(findTestObject('Page_Inventory/button_add_to_cart', [('productName') : targetProduct1]), 5)
+
+WebUI.callTestCase(findTestCase('Common/TC_Util_ResetAppState'), [:], FailureHandling.STOP_ON_FAILURE)
+
+WebUI.verifyElementNotPresent(findTestObject('Component_Navbar/text_cart_badge'), 5)
+
+WebUI.verifyElementPresent(findTestObject('Page_Inventory/button_add_to_cart', [('productName') : targetProduct2]), 5)
+

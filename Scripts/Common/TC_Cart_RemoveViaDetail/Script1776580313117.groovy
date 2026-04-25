@@ -17,7 +17,7 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-def linkProduct = findTestObject('Page_Inventory/link_product', [('productName') : target])
+def linkProduct = findTestObject('Page_Inventory/link_product_via_title', [('productName') : target])
 
 def textCartBadge = findTestObject('Component_Navbar/text_cart_badge')
 

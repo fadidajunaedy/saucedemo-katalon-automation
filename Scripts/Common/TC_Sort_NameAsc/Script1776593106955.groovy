@@ -17,19 +17,28 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.waitForElementClickable(findTestObject('Component_Navbar/button_menu_burger'), 0)
+WebUI.callTestCase(findTestCase('Common/TC_Auth_Login'), [('var_username') : 'standard_user', ('var_password') : 'secret_sauce'
+        , ('var_expected_status') : 'success', ('var_expected_message') : ''], FailureHandling.STOP_ON_FAILURE)
 
-WebUI.click(findTestObject('Component_Navbar/button_menu_burger'))
+def initialElements = WebUI.findWebElements(findTestObject('Page_Inventory/text_product_names'), 5)
+List<String> initialNames = []
+for (def el: initialElements) {
+	initialNames.add(el.getText())
+}
 
-WebUI.verifyElementVisible(findTestObject('Component_Sidebar/button_cross_burger'))
+List<String> expectedNames = new ArrayList<>(initialNames)
+expectedNames = expectedNames.sort()
 
-WebUI.waitForElementClickable(findTestObject('Component_Sidebar/link_logout'), 0)
+WebUI.waitForElementClickable(findTestObject('Page_Inventory/select_sort'), 5)
 
-WebUI.click(findTestObject('Component_Sidebar/link_logout'))
+WebUI.selectOptionByValue(findTestObject('Page_Inventory/select_sort'), 'az', false)
 
 WebUI.delay(1)
 
-String currentURL = WebUI.getUrl()
+def actualElements = WebUI.findWebElements(findTestObject('Page_Inventory/text_product_names'), 5)
+List<String> actualNames = []
+for (def el: actualElements) {
+	actualNames.add(el.getText())
+}
 
-WebUI.verifyMatch(currentURL, 'https://www.saucedemo.com/', false)
-
+WebUI.verifyEqual(actualNames, expectedNames)

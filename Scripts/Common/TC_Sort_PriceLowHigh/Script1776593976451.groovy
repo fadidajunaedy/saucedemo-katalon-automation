@@ -17,17 +17,31 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.clearText(findTestObject('Page_Checkout_Step_One/field_firstname'))
+def initialElements = WebUI.findWebElements(findTestObject('Page_Inventory/text_prices'), 5)
 
-WebUI.setText(findTestObject('Page_Checkout_Step_One/field_firstname'), var_firstname)
+List<String> initialPrices = []
 
-WebUI.clearText(findTestObject('Page_Checkout_Step_One/field_lastname'))
+for (def el : initialElements) {
+    initialPrices.add(CustomKeywords.'my.utils.Formatter.extractNumber'(el.getText()))
+}
 
-WebUI.setText(findTestObject('Page_Checkout_Step_One/field_lastname'), var_lastname)
+List<String> expectedPrices = new ArrayList(initialPrices)
 
-WebUI.clearText(findTestObject('Page_Checkout_Step_One/field_postal_code'))
+expectedPrices = expectedPrices.sort()
 
-WebUI.setText(findTestObject('Page_Checkout_Step_One/field_postal_code'), var_postal_code)
+WebUI.waitForElementClickable(findTestObject('Page_Inventory/select_sort'), 5)
 
-WebUI.click(findTestObject('Page_Checkout_Step_One/button_continue'))
+WebUI.selectOptionByValue(findTestObject('Page_Inventory/select_sort'), 'lohi', false)
+
+WebUI.delay(1)
+
+def actualElements = WebUI.findWebElements(findTestObject('Page_Inventory/text_prices'), 5)
+
+List<String> actualPrices = []
+
+for (def el : actualElements) {
+    actualPrices.add(CustomKeywords.'my.utils.Formatter.extractNumber'(el.getText()))
+}
+
+WebUI.verifyEqual(actualPrices, expectedPrices)
 

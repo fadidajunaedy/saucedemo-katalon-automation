@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>link_product</name>
+   <name>link_product_via_title</name>
    <tag></tag>
    <elementGuidId>eb071af4-5edb-403b-9235-4efd89d7d98a</elementGuidId>
    <selectorCollection>

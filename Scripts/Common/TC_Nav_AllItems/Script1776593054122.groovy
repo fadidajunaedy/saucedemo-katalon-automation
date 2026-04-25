@@ -17,19 +17,17 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.waitForElementClickable(findTestObject('Component_Navbar/button_menu_burger'), 0)
+WebUI.verifyElementClickable(findTestObject('Component_Navbar/button_menu_burger'))
 
 WebUI.click(findTestObject('Component_Navbar/button_menu_burger'))
 
-WebUI.verifyElementVisible(findTestObject('Component_Sidebar/button_cross_burger'))
+WebUI.waitForElementPresent(findTestObject('Component_Sidebar/button_cross_burger'), 5)
 
-WebUI.waitForElementClickable(findTestObject('Component_Sidebar/link_logout'), 0)
+WebUI.verifyElementClickable(findTestObject('Component_Sidebar/link_all_items'))
 
-WebUI.click(findTestObject('Component_Sidebar/link_logout'))
-
-WebUI.delay(1)
+WebUI.click(findTestObject('Component_Sidebar/link_all_items'))
 
 String currentURL = WebUI.getUrl()
 
-WebUI.verifyMatch(currentURL, 'https://www.saucedemo.com/', false)
+WebUI.verifyMatch(currentURL, 'https://www.saucedemo.com/inventory.html', false)
 

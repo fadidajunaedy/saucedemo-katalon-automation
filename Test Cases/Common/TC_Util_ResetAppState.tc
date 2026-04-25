@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>TC_Util_ResetAppState</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>50c833dc-dc6d-4ea1-8165-aba836e1a6c0</testCaseGuid>
+</TestCaseEntity>

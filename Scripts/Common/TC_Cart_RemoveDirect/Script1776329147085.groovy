@@ -19,9 +19,9 @@ import org.openqa.selenium.Keys as Keys
 
 def textCartBadge = findTestObject('Component_Navbar/text_cart_badge')
 
-def buttonRemoveFromCart = findTestObject('Page_Inventory/button_remove_from_cart', [('productName') : 'Sauce Labs Backpack'])
+def buttonRemoveFromCart = findTestObject('Page_Inventory/button_remove_from_cart', [('productName') : target])
 
-def buttonAddToCart = findTestObject('Page_Inventory/button_add_to_cart', [('productName') : 'Sauce Labs Backpack'])
+def buttonAddToCart = findTestObject('Page_Inventory/button_add_to_cart', [('productName') : target])
 
 int countQuantityBefore = 0
 

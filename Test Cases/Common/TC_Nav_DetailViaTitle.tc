@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestCaseEntity>
    <description></description>
-   <name>TC_Cart_RemoveDirect</name>
+   <name>TC_Nav_DetailViaTitle</name>
    <tag></tag>
    <comment></comment>
    <recordOption>OTHER</recordOption>
-   <testCaseGuid>25286f2c-a2fa-4f29-acc6-2ee61f6c0e0b</testCaseGuid>
+   <testCaseGuid>66a389da-f6bc-4efd-9faa-f532282655a0</testCaseGuid>
    <variableLinks>
       <testDataLinkId></testDataLinkId>
       <type>DEFAULT</type>
       <value></value>
-      <variableId>fefabcac-b0a3-4687-8f7d-e57e5df0dc0a</variableId>
+      <variableId>bebfc711-3c76-46e6-844a-215ae341e6e4</variableId>
    </variableLinks>
    <variable>
-      <defaultValue>''</defaultValue>
+      <defaultValue>'Sauce Labs Backpack'</defaultValue>
       <description></description>
-      <id>fefabcac-b0a3-4687-8f7d-e57e5df0dc0a</id>
+      <id>bebfc711-3c76-46e6-844a-215ae341e6e4</id>
       <masked>false</masked>
       <name>target</name>
    </variable>
